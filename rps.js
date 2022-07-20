@@ -5,7 +5,7 @@ function getComputerChoice() {
         choice = "paper";
     }
     else if (choiceNumber % 3 == 0) {
-        choice = "scissor";
+        choice = "scissors";
     }
     else {
         choice = "rock";
@@ -44,6 +44,6 @@ function game () {
     var gameRounds = 5
     console.log("Odin-Bot wants to play " + gameRounds + " rounds!")
     for (let i = 0; i < gameRounds; i++) {
-        return playRound(window.prompt("Odin-Bot asks for your move:"), getComputerChoice()); _
+        console.log(playRound(window.prompt("Odin-Bot asks for your move:"), getComputerChoice()));
     }
 }
