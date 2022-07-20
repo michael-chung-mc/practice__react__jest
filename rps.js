@@ -20,27 +20,28 @@ function getComputerChoice () {
 function playRound (playerSelection, computerSelection) {
     var playerChoice = playerSelection.toLowerCase();
     var computerChoice = computerSelection.toLowerCase();
-    var computerWon = false;
-    var tie = false;
+    var result = "Error"
     if (computerChoice == "rock")
     {
-        if (playerChoice == "paper") { computerWon = false; }
-        else if (playerChoice == "scissors") { computerWon = true; }
-        else if (playerChoice == "rock") { tie = true; }
+        if (playerChoice == "paper") { result = "paper vs rock = you won!" }
+        else if (playerChoice == "scissors") { result = "scissors vs rock = computer wins!" }
+        else if (playerChoice == "rock") { result = "rock vs rock = its a tie!"; }
         else { console.log("Illegal move")}
     }
-    if (computerChoice == "scissors")
+    else if (computerChoice == "scissors")
     {
-        if (playerChoice == "paper") { computerWon = true; }
-        else if (playerChoice == "scissors") { tie = true; }
-        else if (playerChoice == "rock") { computerWon = false; }
+        if (playerChoice == "paper") { result = "paper vs scissors = computer wins!" }
+        else if (playerChoice == "scissors") { result = "scissors vs scissors = its a tie" }
+        else if (playerChoice == "rock") { result = "rock vs scissors = you won!" }
         else { console.log("Illegal move")}
     }
-    if (computerChoice == "paper")
+    else if (computerChoice == "paper")
     {
-        if (playerChoice == "paper") { tie = true; }
-        else if (playerChoice == "scissors") { computerWon = false; }
-        else if (playerChoice == "rock") { computerWon = true; }
+        if (playerChoice == "paper") { result = "paper vs paper = its a tie!"; }
+        else if (playerChoice == "scissors") { result = "scissors vs paper = you won!"; }
+        else if (playerChoice == "rock") { result = "rock vs paper = computer wins!"; }
         else { console.log("Illegal move")}
     }
+    console.log (result)
+    return result;
 }
