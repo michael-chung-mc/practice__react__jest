@@ -20,16 +20,22 @@ const manager = (() => {
     function updateScreen() {
         let gameboard = board.getBoard();
         let contentDiv = document.getElementById("content_container");
+        // clear old
+        while (contentDiv.firstChild) {
+            contentDiv.removeChild(contentDiv.firstChild);
+        }
+        // set new
         for (let i = 0; i < gameboard.length; i++) {
-            let rowDiv = document.createElement("div");
-            rowDiv.setAttribute("id", "board_row");
+            let columnDiv = document.createElement("div");
+            columnDiv.setAttribute("id", "board_column");
+            columnDiv.style.gridColumn = i + 1;
             for (let j = 0; j < gameboard[i].length; j++) {
                 let cell = document.createElement("div");
                 cell.setAttribute("id", "board_cell");
                 cell.innerHTML = gameboard[i][j];
-                rowDiv.appendChild(cell);
+                columnDiv.appendChild(cell);
             }
-            contentDiv.appendChild(rowDiv);
+            contentDiv.appendChild(columnDiv);
         }
     }
     return {

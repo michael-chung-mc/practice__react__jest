@@ -1,0 +1,21 @@
+#content_container {
+    display: grid;
+    grid-template-columns: 3;
+    background-color: darkgray;
+    max-width: 75vw;
+    max-height: 75vh;
+}
+
+#board_column {
+    display: grid;
+    grid-template-rows: 3;
+    background-color: gray;
+}
+
+#board_cell {
+    display: grid;
+    min-width: 1rem;
+    max-width: 5rem;
+    min-height: 1rem;
+    max-height: 5rem;
+}
