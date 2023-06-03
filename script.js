@@ -17,6 +17,7 @@ const playerFactory = () => {
 };
 
 const manager = (() => {
+    let marks = [" ", "O", "X"];
     function updateScreen() {
         let gameboard = board.getBoard();
         let contentDiv = document.getElementById("content_container");
@@ -30,7 +31,8 @@ const manager = (() => {
             columnDiv.setAttribute("id", "board_column");
             columnDiv.style.gridColumn = i + 1;
             for (let j = 0; j < gameboard[i].length; j++) {
-                let cell = document.createElement("div");
+                let cell = document.createElement("button");
+                cell.setAttribute("type", "button");
                 cell.setAttribute("id", "board_cell");
                 cell.innerHTML = gameboard[i][j];
                 columnDiv.appendChild(cell);
