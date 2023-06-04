@@ -1,11 +1,19 @@
 body {
     margin: 0;
     display: grid;
-    grid-template-rows: 1;
+    grid-template-rows: 1fr 4fr;
     width: 100vw;
     height: 100vh;
 }
 
+.header {
+    display: grid;
+    position: relative;
+    width: 100vw;
+    grid-template-rows: 2fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
 #status_header {
     display: grid;
     position: relative;
@@ -17,7 +25,7 @@ body {
 
 #content_container {
     display: grid;
-    grid-template-columns: 3;
+    grid-template-columns: 1fr 1fr 1fr;
     background-color: darkgray;
     width: 75vw;
     height: 75vh;
@@ -25,7 +33,7 @@ body {
 
 #board_column {
     display: grid;
-    grid-template-rows: 3;
+    grid-template-rows: 1fr 1fr 1fr;
     background-color: gray;
     width: 25vw;
     height: 75vh;

@@ -4,11 +4,75 @@ const board = (() => {
     function getBoard () {
         return grid;
     }
+    function getEmptyMark () {
+        return marks[0];
+    }
     function getPlayerOneMark () {
         return marks[1];
     }
     function getPlayerTwoMark () {
         return marks[2];
+    }
+    function getColumnState() {
+        if (grid[0][0] == grid[0][1] == grid[0][2])
+        {
+            return grid[0][0];
+        }
+        else if (grid[1][0] == grid[1][1] == grid[1][2])
+        {
+            return grid[1][0];
+        }
+        else if (grid[2][0] == grid[2][1] == grid[2][2])
+        {
+            return grid[2][0];
+        }
+        return marks[0];
+    }
+    function getRowState() {
+        if (grid[0][0] == grid[1][0] == grid[2][0])
+        {
+            return grid[0][0];
+        }
+        else if (grid[0][1] == grid[1][1] == grid[2][1])
+        {
+            return grid[0][1];
+        }
+        else if (grid[0][2] == grid[1][2] == grid[2][2])
+        {
+            return grid[0][2];
+        }
+        return marks[0];
+    }
+    function getDiagonalState () {
+        if (grid[0][0] == grid[1][1] == grid [2][2])
+        {
+            return grid[0][0];
+        }
+        else if (grid[0][2] == grid[1][1] == grid [2][0])
+        {
+            return grid[0][2];
+        }
+        return marks[0];
+    }
+    function getState () {
+        let rowWin = getRowState();
+        let columnWin = getColumnState();
+        let diagonalWin = getDiagonalState();
+        if (rowWin != marks[0]) {
+            console.log(rowWin + "won the row")
+            return rowWin;
+        }
+        else if (columnWin != marks[0]) {
+            console.log(columnWin + "won the column")
+            return columnWin;
+        }
+        else if (diagonalWin != marks[0]) {
+            console.log(diagonalWin + "won diagonally")
+            return diagonalWin;
+        }
+        else {
+            return marks[0];
+        }
     }
     function setValue (mark, x, y) {
         console.log("Setting Value:");
@@ -30,8 +94,10 @@ const board = (() => {
     }
     return {
         getBoard,
+        getEmptyMark,
         getPlayerOneMark,
         getPlayerTwoMark,
+        getState,
         setValue
     }
 })();
@@ -62,6 +128,7 @@ const manager = (() => {
     function updateScreen() {
         let gameboard = board.getBoard();
         let contentDiv = document.getElementById("content_container");
+        let statusDiv = document.getElementById("status_header");
         // clear old
         while (contentDiv.firstChild) {
             contentDiv.removeChild(contentDiv.firstChild);
@@ -82,6 +149,21 @@ const manager = (() => {
                 columnDiv.appendChild(cell);
             }
             contentDiv.appendChild(columnDiv);
+        }
+        // status of game
+        let win = board.getState();
+        if (win == board.getEmptyMark())
+        {
+            if (currentPlayer == 1) {
+                statusDiv.innerHTML = "O's Turn";
+            }
+            else {
+                statusDiv.innerHTML = "X's Turn";
+            }
+        }
+        else
+        {
+            statusDiv.innerHTML = win + " won!";
         }
     }
     return {
