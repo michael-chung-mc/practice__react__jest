@@ -1,13 +1,35 @@
 const board = (() => {
+    let marks = [" ", "O", "X"];
     let grid = [[" ", " ", " "],[" ", " ", " "],[" ", " ", " "]];
     function getBoard () {
         return grid;
     }
-    function setValue (value, x, y) {
-        grid[x][y] = value;
+    function getPlayerOneMark () {
+        return marks[1];
+    }
+    function getPlayerTwoMark () {
+        return marks[2];
+    }
+    function setValue (mark, x, y) {
+        console.log("Setting Value:");
+        console.log(grid);
+        console.log(mark);
+        console.log(x);
+        console.log(y);
+        console.log(marks);
+        if (grid[x][y] == marks[0])
+        {
+            grid[x][y] = mark;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     return {
         getBoard,
+        getPlayerOneMark,
+        getPlayerTwoMark,
         setValue
     }
 })();
@@ -17,7 +39,24 @@ const playerFactory = () => {
 };
 
 const manager = (() => {
-    let marks = [" ", "O", "X"];
+    let currentPlayer = 1;
+    function placeMarker (x, y) {
+        return () => {
+            console.log("Placing Mark:");
+            console.log(x);
+            console.log(y);
+            console.log(currentPlayer);
+            if (currentPlayer == 1) {
+                board.setValue(board.getPlayerOneMark(), x, y);
+                currentPlayer = 2;
+            }
+            else {
+                board.setValue(board.getPlayerTwoMark(), y, x);
+                currentPlayer = 1;
+            }
+            updateScreen();
+        }
+    }
     function updateScreen() {
         let gameboard = board.getBoard();
         let contentDiv = document.getElementById("content_container");
@@ -34,7 +73,10 @@ const manager = (() => {
                 let cell = document.createElement("button");
                 cell.setAttribute("type", "button");
                 cell.setAttribute("id", "board_cell");
+                cell.setAttribute("class", i);
+                cell.setAttribute("class", j);
                 cell.innerHTML = gameboard[i][j];
+                cell.addEventListener("click", placeMarker(i, j));
                 columnDiv.appendChild(cell);
             }
             contentDiv.appendChild(columnDiv);
