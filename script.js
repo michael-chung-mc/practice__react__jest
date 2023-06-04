@@ -19,10 +19,12 @@ const board = (() => {
         console.log(marks);
         if (grid[x][y] == marks[0])
         {
+            console.log("position" + x + "," + y + " is marked");
             grid[x][y] = mark;
             return true;
         }
         else {
+            console.log("position" + x + "," + y + " is occupied");
             return false;
         }
     }
@@ -51,7 +53,7 @@ const manager = (() => {
                 currentPlayer = 2;
             }
             else {
-                board.setValue(board.getPlayerTwoMark(), y, x);
+                board.setValue(board.getPlayerTwoMark(), x, y);
                 currentPlayer = 1;
             }
             updateScreen();
@@ -73,8 +75,8 @@ const manager = (() => {
                 let cell = document.createElement("button");
                 cell.setAttribute("type", "button");
                 cell.setAttribute("id", "board_cell");
-                cell.setAttribute("class", i);
-                cell.setAttribute("class", j);
+                // cell.setAttribute("class", "x" + i);
+                // cell.setAttribute("class", "y" + j);
                 cell.innerHTML = gameboard[i][j];
                 cell.addEventListener("click", placeMarker(i, j));
                 columnDiv.appendChild(cell);
