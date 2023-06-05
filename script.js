@@ -13,74 +13,81 @@ const board = (() => {
     function getPlayerTwoMark () {
         return marks[2];
     }
+    function getCell (x,y) {
+        if (x >= grid.length || y >= grid[0].length)
+        {
+            return false;
+        }
+        return grid[x][y];
+    }
     function getColumnState() {
-        if (grid[0][0] === grid[0][1] === grid[0][2])
+        if (getCell(0,0) == getCell(0,1) & getCell(0,1) == getCell(0,2))
         {
-            console.log("0,0 - 0,1 - 0,2");
-            return grid[0][0];
+            console.log(grid[0][0] + " | " + grid[0][1] + " | " + grid[0][2]);
+            return getCell(0,0);
         }
-        else if (grid[1][0] === grid[1][1] === grid[1][2])
+        else if (getCell(1,0) == getCell(1,1) & getCell(1,1) == getCell(1,2))
         {
-            console.log("1,0 - 1,1 - 1,2");
-            return grid[1][0];
+            console.log(grid[1][0] + " | " + grid[1][1] + " | " + grid[1][2]);
+            return getCell(1,0);
         }
-        else if (grid[2][0] === grid[2][1] === grid[2][2])
+        else if (getCell(2,0) == getCell(2,1) & getCell(2,1) == getCell(2,2))
         {
-            console.log("2,0 - 2,1 - 2,2");
-            return grid[2][0];
+            console.log(grid[2][0] + " | " + grid[2][1] + " | " + grid[2][2]);
+            return getCell(2,0);
         }
-        return marks[0];
+        return getEmptyMark();
     }
     function getRowState() {
-        if (grid[0][0] === grid[1][0] === grid[2][0])
+        if (getCell(0,0) == getCell(1,0) & getCell(1,0) == getCell(2,0))
         {
-            console.log("0,0 - 1,0 - 2,0");
-            return grid[0][0];
+            console.log(grid[0][0] + " | " + grid[1][0] + " | " + grid[2][0]);
+            return getCell(0,0);
         }
-        else if (grid[0][1] === grid[1][1] === grid[2][1])
+        else if (getCell(0,1) == getCell(1,1) & getCell(1,1) == getCell(2,1))
         {
-            console.log("0,1 - 1,1 - 2,1");
-            return grid[0][1];
+            console.log(grid[0][1] + " | " + grid[1][1] + " | " + grid[2][1]);
+            return getCell(0,1);
         }
-        else if (grid[0][2] === grid[1][2] === grid[2][2])
+        else if (getCell(0,2) == getCell(1,2) & getCell(1,2) == getCell(2,2))
         {
-            console.log("0,2 - 1,2 - 2,2");
-            return grid[0][2];
+            console.log(grid[0][2] + " | " + grid[1][2] + " | " + grid[2][2]);
+            return getCell(0,2);
         }
-        return marks[0];
+        return getEmptyMark();
     }
     function getDiagonalState () {
-        if (grid[0][0] === grid[1][1] === grid[2][2])
+        if (getCell(0,0) == getCell(1,1) & getCell(1,1) == getCell(2,2))
         {
-            console.log("0,0 - 1,1 - 2,2");
-            return grid[0][0];
+            console.log(grid[0][0] + " | " + grid[1][1] + " | " + grid[2][2]);
+            return getCell(0,0);
         }
-        else if (grid[0][2] === grid[1][1] === grid[2][0])
+        else if (getCell(0,2) == getCell(1,1) & getCell(1,1) == getCell(2,0))
         {
-            console.log("0,2 - 1,1 - 2,0");
-            return grid[0][2];
+            console.log(grid[0][2] + " | " + grid[1][1] + " | " + grid[2][0]);
+            return getCell(0,2);
         }
-        return marks[0];
+        return getEmptyMark();
     }
     function getState () {
         console.log(grid);
         let rowWin = getRowState();
         let columnWin = getColumnState();
         let diagonalWin = getDiagonalState();
-        if (rowWin != marks[0]) {
+        if (rowWin != getEmptyMark()) {
             console.log(rowWin + " won the row")
             return rowWin;
         }
-        else if (columnWin != marks[0]) {
+        else if (columnWin != getEmptyMark()) {
             console.log(columnWin + " won the column")
             return columnWin;
         }
-        else if (diagonalWin != marks[0]) {
+        else if (diagonalWin != getEmptyMark()) {
             console.log(diagonalWin + " won diagonally")
             return diagonalWin;
         }
         else {
-            return marks[0];
+            return getEmptyMark();
         }
     }
     function setValue (mark, x, y) {
@@ -90,7 +97,7 @@ const board = (() => {
         // console.log(x);
         // console.log(y);
         // console.log(marks);
-        if (grid[x][y] == marks[0])
+        if (grid[x][y] == getEmptyMark())
         {
             // console.log("position" + x + "," + y + " is marked");
             grid[x][y] = mark;
