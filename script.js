@@ -108,13 +108,21 @@ const board = (() => {
             return false;
         }
     }
+    function clearGrid () {
+        for (let i = 0; i < grid.length; i++){
+            for (let j = 0; j < grid.length; j++){
+                grid[i][j] = getEmptyMark();
+            }
+        }
+    }
     return {
         getBoard,
         getEmptyMark,
         getPlayerOneMark,
         getPlayerTwoMark,
         getState,
-        setValue
+        setValue,
+        clearGrid
     }
 })();
 
@@ -124,6 +132,11 @@ const playerFactory = () => {
 
 const manager = (() => {
     let currentPlayer = 1;
+    document.getElementById("reset_game_button").addEventListener("click", () => {
+        board.clearGrid();
+        currentPlayer = 1;
+        updateScreen();
+    }) ;
     function placeMarker (x, y) {
         return () => {
             // console.log("Placing Mark:");
