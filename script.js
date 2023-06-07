@@ -2,7 +2,18 @@ const board = (() => {
     let marks = [" ", "O", "X"];
     let grid = [[marks[0],marks[0],marks[0]],[marks[0],marks[0],marks[0]],[marks[0],marks[0],marks[0]]];
     function getBoard () {
-        return grid;
+       return grid;
+    }
+    function isBoardFull () {
+        return (grid[0][0] != marks[0]
+            & grid[0][1] != marks[0]
+            & grid[0][2] != marks[0]
+            & grid[1][0] != marks[0]
+            & grid[1][1] != marks[0]
+            & grid[1][2] != marks[0]
+            & grid[2][0] != marks[0]
+            & grid[2][1] != marks[0]
+            & grid[2][2] != marks[0])
     }
     function getEmptyMark () {
         return marks[0];
@@ -90,6 +101,9 @@ const board = (() => {
             return getEmptyMark();
         }
     }
+    function getTie () {
+        return isBoardFull();
+    }
     function setValue (mark, x, y) {
         // console.log("Setting Value:");
         // console.log(grid);
@@ -121,6 +135,7 @@ const board = (() => {
         getPlayerOneMark,
         getPlayerTwoMark,
         getState,
+        getTie,
         setValue,
         clearGrid
     }
@@ -187,7 +202,11 @@ const manager = (() => {
         let win = board.getState();
         if (win == board.getEmptyMark())
         {
-            if (currentPlayer == 1) {
+            if (board.getTie())
+            {
+                statusDiv.innerHTML = "Tie!";
+            }
+            else if (currentPlayer == 1) {
                 statusDiv.innerHTML = "O's Turn";
             }
             else {
