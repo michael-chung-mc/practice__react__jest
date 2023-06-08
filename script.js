@@ -215,7 +215,7 @@ const manager = (() => {
         }
         else
         {
-            statusDiv.innerHTML = win + " won!";
+            statusDiv.innerHTML = win + " won! Congratulations!";
         }
     }
     return {
