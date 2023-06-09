@@ -141,34 +141,83 @@ const board = (() => {
     }
 })();
 
-const playerFactory = () => {
+// const playerFactory = (username, mark) => {
+//     let playerName = username;
+//     let playerMark = mark;
+//     function getName() {return playerName};
+//     function getMark() {return playerMark};
+//     function setName(newName) {playerName = newName};
+//     return (getName, getMark, setName);
+// // };
 
-};
-
+//playerName is not defined
+// function playerFactory(username, mark) {
+//     console.log(username);
+//     console.log(mark);
+//     return {
+//         playerName : username,
+//         playerMark : mark,
+//         getName: function() {return playerName;},
+//         getMark: function() {return playerMark;},
+//         setName: function(newName) {playerName = newName;}
+//     };
+// }
+var playerFactory = function(username, mark) {
+    console.log(username);
+    console.log(mark);
+    var player = {};
+    player.playerName = username,
+    player.playerMark = mark,
+    player.getName = function() {return player.playerName;},
+    player.getMark = function() {return player.playerMark;},
+    player.setName = function(newName) {player.playerName = newName;}
+    return player;
+}
 const manager = (() => {
-    let currentPlayer = 1;
+    let playerOne = playerFactory(board.getPlayerOneMark(),board.getPlayerOneMark());
+    console.log(playerOne.getName());
+    console.log(playerOne.getMark());
+    let playerTwo = playerFactory(board.getPlayerTwoMark(),board.getPlayerTwoMark());
+    console.log(playerTwo.getName());
+    console.log(playerTwo.getMark());
+    let currentPlayer = playerOne;
     document.getElementById("reset_game_button").addEventListener("click", () => {
         board.clearGrid();
-        currentPlayer = 1;
+        currentPlayer = playerOne;
         updateScreen();
-    }) ;
+    });
+    document.getElementById("player_1_name").addEventListener("input", (event) => {
+        playerOne.setName(event.target.value);
+        updateScreen();
+    });
+    document.getElementById("player_2_name").addEventListener("input", (event) => {
+        playerTwo.setName(event.target.value);
+        updateScreen();
+    });
     function placeMarker (x, y) {
         return () => {
             // console.log("Placing Mark:");
             // console.log(x);
             // console.log(y);
             // console.log(currentPlayer);
-            if (currentPlayer == 1) {
-                if (board.setValue(board.getPlayerOneMark(), x, y))
-                {
-                    currentPlayer = 2;
-                }
+            // if (currentPlayer == 1) {
+            //     if (board.setValue(board.getPlayerOneMark(), x, y))
+            //     {
+            //         currentPlayer = 2;
+            //     }
+            // }
+            // else {
+            //     if (board.setValue(board.getPlayerTwoMark(), x, y))
+            //     {
+            //         currentPlayer = 1;
+            //     }
+            // }
+            board.setValue(currentPlayer.getMark(), x, y);
+            if (currentPlayer == playerOne) {
+                currentPlayer = playerTwo;
             }
-            else {
-                if (board.setValue(board.getPlayerTwoMark(), x, y))
-                {
-                    currentPlayer = 1;
-                }
+            else{
+                currentPlayer = playerOne;
             }
             updateScreen();
         }
@@ -206,11 +255,11 @@ const manager = (() => {
             {
                 statusDiv.innerHTML = "Tie!";
             }
-            else if (currentPlayer == 1) {
-                statusDiv.innerHTML = "O's Turn";
+            else if (currentPlayer == playerOne) {
+                statusDiv.innerHTML = playerOne.getName() + "'s Turn";
             }
             else {
-                statusDiv.innerHTML = "X's Turn";
+                statusDiv.innerHTML = playerTwo.getName() + "'s Turn";
             }
         }
         else

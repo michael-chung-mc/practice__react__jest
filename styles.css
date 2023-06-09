@@ -1,19 +1,22 @@
 body {
     margin: 0;
     display: grid;
-    grid-template-rows: 2fr 1fr 4fr;
+    grid-template-rows: 1fr 4fr;
     gap: 1rem;
     width: 100vw;
     height: 100vh;
+    align-items: center;
+    justify-items: center;
 }
 
 .header {
     display: grid;
     position: relative;
     width: 100vw;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 2fr 2fr;
     align-items: center;
     justify-items: center;
+    gap: 1rem;
 }
 #status_header {
     display: grid;
@@ -22,6 +25,12 @@ body {
     height: 3rem;
     align-items: center;
     justify-items: center;
+}
+
+.names {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 }
 
 #content_container {
