@@ -25,13 +25,13 @@ const board = (() => {
         return marks[2];
     }
     function getCell (x,y) {
-        if (x >= grid.length || y >= grid[0].length)
+        if (x >= grid.length || y >= grid[0].length || x < 0 || y < 0)
         {
             return false;
         }
         return grid[x][y];
     }
-    function getColumnState() {
+    function getColumnWin() {
         if (getCell(0,0) == getCell(0,1) & getCell(0,1) == getCell(0,2))
         {
             console.log(grid[0][0] + " | " + grid[0][1] + " | " + grid[0][2]);
@@ -49,7 +49,7 @@ const board = (() => {
         }
         return getEmptyMark();
     }
-    function getRowState() {
+    function getRowWin() {
         if (getCell(0,0) == getCell(1,0) & getCell(1,0) == getCell(2,0))
         {
             console.log(grid[0][0] + " | " + grid[1][0] + " | " + grid[2][0]);
@@ -67,7 +67,7 @@ const board = (() => {
         }
         return getEmptyMark();
     }
-    function getDiagonalState () {
+    function getDiagonalWin () {
         if (getCell(0,0) == getCell(1,1) & getCell(1,1) == getCell(2,2))
         {
             console.log(grid[0][0] + " | " + grid[1][1] + " | " + grid[2][2]);
@@ -82,9 +82,9 @@ const board = (() => {
     }
     function getState () {
         console.log(grid);
-        let rowWin = getRowState();
-        let columnWin = getColumnState();
-        let diagonalWin = getDiagonalState();
+        let rowWin = getRowWin();
+        let columnWin = getColumnWin();
+        let diagonalWin = getDiagonalWin();
         if (rowWin != getEmptyMark()) {
             console.log(rowWin + " won the row")
             return rowWin;
@@ -134,6 +134,7 @@ const board = (() => {
         getEmptyMark,
         getPlayerOneMark,
         getPlayerTwoMark,
+        getCell,
         getState,
         getTie,
         setValue,
@@ -142,7 +143,7 @@ const board = (() => {
 })();
 
 // const playerFactory = (username, mark) => {
-//     let playerName = username;
+//     let playerName = username;grid
 //     let playerMark = mark;
 //     function getName() {return playerName};
 //     function getMark() {return playerMark};
@@ -162,6 +163,136 @@ const board = (() => {
 //         setName: function(newName) {playerName = newName;}
 //     };
 // }
+const bot = ((botmark) => {
+    let mark = botmark
+    function scoreRow (x,y)
+    {
+        let score = 0;
+        let grid = board.getBoard();
+        for (let i = 0; i < grid.length; i++) {
+            if (i != x)
+            {
+                if (board.getCell(i,y)==mark)
+                {
+                    score += 2;
+                }
+                else if (board.getCell(i,y)!=board.getEmptyMark())
+                {
+                    score += 1;
+                }
+            }
+        }
+        return score;
+    }
+    function scoreColumn (x,y)
+    {
+        let score = 0;
+        let grid = board.getBoard();
+        for (let i = 0; i < grid.length; i++) {
+            if (i != y)
+            {
+                if (board.getCell(x,i)==mark)
+                {
+                    // chase win
+                    score += 2;
+                }
+                else if (board.getCell(x,i)!=board.getEmptyMark())
+                {
+                    // stop loss
+                    score += 1;
+                }
+            }
+        }
+        return score;
+    }
+    function scoreDiagonal (x,y)
+    {
+        let score = 0;
+        let leftUpperDiagonal = board.getCell(x-1,y-1);
+        let leftLowerDiagonal = board.getCell(x-1,y+1);
+        let rightLowerDiagonal = board.getCell(x+1,y+1);
+        let rightUpperDiagonal = board.getCell(x+1,y-1);
+        if ( leftUpperDiagonal != false)
+        {
+            if (leftUpperDiagonal == mark)
+            {
+                // chase win
+                score += 2;
+            }
+            else if (leftUpperDiagonal!=board.getEmptyMark())
+            {
+                // stop loss
+                score += 1;
+            }
+        }
+        if (leftLowerDiagonal != false)
+        {
+            if (leftLowerDiagonal == mark)
+            {
+                // chase win
+                score += 2;
+            }
+            else if (leftLowerDiagonal!=board.getEmptyMark())
+            {
+                // stop loss
+                score += 1;
+            }
+        }
+        if (rightLowerDiagonal != false)
+        {
+            if (rightLowerDiagonal == mark)
+            {
+                // chase win
+                score += 2;
+            }
+            else if (rightLowerDiagonal!=board.getEmptyMark())
+            {
+                // stop loss
+                score += 1;
+            }
+        }
+        if (rightUpperDiagonal != false)
+        {
+            if (rightUpperDiagonal == mark)
+            {
+                // chase win
+                score += 2;
+            }
+            else if (rightUpperDiagonal!=board.getEmptyMark())
+            {
+                // stop loss
+                score += 1;
+            }
+        }
+        return score;
+    }
+    function minmax () {
+        let bestMove = [0,1,1];
+        let grid = board.getBoard();
+        for (let i = 0; i < grid.length; i++) {
+            for (let j = 0; j < grid[i].length; j++) {
+                if (board.getCell(i,j) == board.getEmptyMark())
+                {
+                    let rowScore = scoreRow(i,j);
+                    let columnScore = scoreColumn(i,j);
+                    let diagonalScore = scoreDiagonal(i,j);
+                    let sumScore = rowScore + columnScore + diagonalScore
+                    if (sumScore > bestMove[0])
+                    {
+                        bestMove = [sumScore];
+                        bestMove += i;
+                        bestMove += j;
+                    }
+                }
+            }
+        }
+        console.log("odin-bot is thinking ... " + bestMove);
+    }
+    return {
+        minmax
+    }
+})
+
 var playerFactory = function(username, mark) {
     console.log(username);
     console.log(mark);
@@ -173,6 +304,7 @@ var playerFactory = function(username, mark) {
     player.setName = function(newName) {player.playerName = newName;}
     return player;
 }
+
 const manager = (() => {
     let playerOne = playerFactory(board.getPlayerOneMark(),board.getPlayerOneMark());
     console.log(playerOne.getName());
@@ -181,6 +313,7 @@ const manager = (() => {
     console.log(playerTwo.getName());
     console.log(playerTwo.getMark());
     let currentPlayer = playerOne;
+    let odinBot = bot(board.getPlayerTwoMark);
     document.getElementById("reset_game_button").addEventListener("click", () => {
         board.clearGrid();
         currentPlayer = playerOne;
@@ -266,6 +399,7 @@ const manager = (() => {
         {
             statusDiv.innerHTML = win + " won! Congratulations!";
         }
+        odinBot.minmax();
     }
     return {
         updateScreen
