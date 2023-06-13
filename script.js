@@ -165,6 +165,10 @@ const board = (() => {
 // }
 const bot = ((botmark) => {
     let mark = botmark
+    function getMark ()
+    {
+        return mark;
+    }
     function scoreRow (x,y)
     {
         let score = 0;
@@ -267,7 +271,8 @@ const bot = ((botmark) => {
         return score;
     }
     function minmax () {
-        let bestMove = [0,1,1];
+        let bestMove = [1,1]
+        let scoreMove = [0,1,1];
         let grid = board.getBoard();
         for (let i = 0; i < grid.length; i++) {
             for (let j = 0; j < grid[i].length; j++) {
@@ -277,18 +282,20 @@ const bot = ((botmark) => {
                     let columnScore = scoreColumn(i,j);
                     let diagonalScore = scoreDiagonal(i,j);
                     let sumScore = rowScore + columnScore + diagonalScore
-                    if (sumScore > bestMove[0])
+                    if (sumScore > scoreMove[0])
                     {
-                        bestMove = [sumScore];
-                        bestMove += i;
-                        bestMove += j;
+                        scoreMove = [sumScore, i,j];
+                        bestMove[0] = i;
+                        bestMove[1] = j;
                     }
                 }
             }
         }
         console.log("odin-bot is thinking ... " + bestMove);
+        return bestMove;
     }
     return {
+        getMark,
         minmax
     }
 })
@@ -306,6 +313,7 @@ var playerFactory = function(username, mark) {
 }
 
 const manager = (() => {
+    let odinBot = null;
     let playerOne = playerFactory(board.getPlayerOneMark(),board.getPlayerOneMark());
     console.log(playerOne.getName());
     console.log(playerOne.getMark());
@@ -313,7 +321,6 @@ const manager = (() => {
     console.log(playerTwo.getName());
     console.log(playerTwo.getMark());
     let currentPlayer = playerOne;
-    let odinBot = bot(board.getPlayerTwoMark);
     document.getElementById("reset_game_button").addEventListener("click", () => {
         board.clearGrid();
         currentPlayer = playerOne;
@@ -321,10 +328,18 @@ const manager = (() => {
     });
     document.getElementById("player_1_name").addEventListener("input", (event) => {
         playerOne.setName(event.target.value);
+        if (event.target.value = ("odin-bot"))
+        {
+            odinBot = bot(board.getPlayerOneMark);
+        }
         updateScreen();
     });
     document.getElementById("player_2_name").addEventListener("input", (event) => {
         playerTwo.setName(event.target.value);
+        if (event.target.value = ("odin-bot"))
+        {
+            odinBot = bot(board.getPlayerTwoMark);
+        }
         updateScreen();
     });
     function placeMarker (x, y) {
@@ -346,11 +361,18 @@ const manager = (() => {
             //     }
             // }
             board.setValue(currentPlayer.getMark(), x, y);
-            if (currentPlayer == playerOne) {
-                currentPlayer = playerTwo;
+            if (odinBot != null){
+                let move = odinBot.minmax();
+                board.setValue(odinBot.getMark(), move[0], move[1]);
             }
-            else{
-                currentPlayer = playerOne;
+            else
+            {
+                if (currentPlayer == playerOne) {
+                    currentPlayer = playerTwo;
+                }
+                else{
+                    currentPlayer = playerOne;
+                }
             }
             updateScreen();
         }
@@ -399,7 +421,6 @@ const manager = (() => {
         {
             statusDiv.innerHTML = win + " won! Congratulations!";
         }
-        odinBot.minmax();
     }
     return {
         updateScreen
