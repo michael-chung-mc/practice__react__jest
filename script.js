@@ -294,9 +294,13 @@ const bot = ((botmark) => {
         console.log("odin-bot is thinking ... " + bestMove);
         return bestMove;
     }
+    function setMark(botmark) {
+        mark = botmark
+    }
     return {
         getMark,
-        minmax
+        minmax,
+        setMark
     }
 })
 
@@ -330,7 +334,7 @@ const manager = (() => {
         playerOne.setName(event.target.value);
         if (event.target.value = ("odin-bot"))
         {
-            odinBot = bot(board.getPlayerOneMark);
+            odinBot = bot(board.getPlayerOneMark());
         }
         updateScreen();
     });
@@ -338,7 +342,7 @@ const manager = (() => {
         playerTwo.setName(event.target.value);
         if (event.target.value = ("odin-bot"))
         {
-            odinBot = bot(board.getPlayerTwoMark);
+            odinBot = bot(board.getPlayerTwoMark());
         }
         updateScreen();
     });
