@@ -294,6 +294,19 @@ const bot = ((botmark) => {
         console.log("odin-bot is thinking ... " + bestMove);
         return bestMove;
     }
+    function minimax (simulatedBoard, depth, max) {
+        if (depth == 0 || simulatedBoard.getTie())
+        {
+            return simulatedBoard.getState();
+        }
+        if (max)
+        {
+
+        }
+        else {
+
+        }
+    }
     function setMark(botmark) {
         mark = botmark
     }
