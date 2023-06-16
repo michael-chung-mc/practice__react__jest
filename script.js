@@ -169,28 +169,34 @@ const bot = ((botmark) => {
     {
         return mark;
     }
+    function isPlayerTwo () {
+        return mark == board.getPlayerTwoMark()
+    }
     function scoreRow (x,y)
     {
-        let score = 0;
+        let win = 0;
+        let tie = 0;
         let grid = board.getBoard();
         for (let i = 0; i < grid.length; i++) {
             if (i != x)
             {
                 if (board.getCell(i,y)==mark)
                 {
-                    score += 2;
+                    win += 2;
                 }
                 else if (board.getCell(i,y)!=board.getEmptyMark())
                 {
-                    score += 1;
+                    tie += 2;
                 }
             }
         }
-        return score;
+        if (win > tie) { return win; }
+        else { return tie; }
     }
     function scoreColumn (x,y)
     {
-        let score = 0;
+        let win = 0;
+        let tie = 0;
         let grid = board.getBoard();
         for (let i = 0; i < grid.length; i++) {
             if (i != y)
@@ -198,77 +204,76 @@ const bot = ((botmark) => {
                 if (board.getCell(x,i)==mark)
                 {
                     // chase win
-                    score += 2;
+                    win += 2;
                 }
                 else if (board.getCell(x,i)!=board.getEmptyMark())
                 {
                     // stop loss
-                    score += 1;
+                    tie += 2;
                 }
             }
         }
-        return score;
+        if (win > tie) { return win; }
+        else { return tie; }
     }
     function scoreDiagonal (x,y)
     {
-        let score = 0;
+        if ((x == 1 && y == 0) || (x==0 && y ==1) || (x==1 && y==2) || (x==2 && y==1))
+        {
+            return 0;
+        }
+        let win = 0;
+        let tie = 0;
         let leftUpperDiagonal = board.getCell(x-1,y-1);
+        let leftUpperMostDiagonal = board.getCell(x-2,y-2);
         let leftLowerDiagonal = board.getCell(x-1,y+1);
+        let leftLowerMostDiagonal = board.getCell(x-2,y+2);
         let rightLowerDiagonal = board.getCell(x+1,y+1);
+        let rightLowerMostDiagonal = board.getCell(x+2,y+2);
         let rightUpperDiagonal = board.getCell(x+1,y-1);
+        let rightUpperMostDiagonal = board.getCell(x+2,y-2);
         if ( leftUpperDiagonal != false)
         {
-            if (leftUpperDiagonal == mark)
-            {
-                // chase win
-                score += 2;
-            }
-            else if (leftUpperDiagonal!=board.getEmptyMark())
-            {
-                // stop loss
-                score += 1;
-            }
+            if (leftUpperDiagonal == mark) { win += 2; }
+            else if (leftUpperDiagonal!=board.getEmptyMark()) { tie += 2; }
+        }
+        if ( leftUpperMostDiagonal != false)
+        {
+            if (leftUpperMostDiagonal == mark) { win += 2; }
+            else if (leftUpperMostDiagonal!=board.getEmptyMark()) { tie += 2; }
         }
         if (leftLowerDiagonal != false)
         {
-            if (leftLowerDiagonal == mark)
-            {
-                // chase win
-                score += 2;
-            }
-            else if (leftLowerDiagonal!=board.getEmptyMark())
-            {
-                // stop loss
-                score += 1;
-            }
+            if (leftLowerDiagonal == mark) { win += 2; }
+            else if (leftLowerDiagonal!=board.getEmptyMark()) { tie += 2; }
+        }
+        if (leftLowerMostDiagonal != false)
+        {
+            if (leftLowerMostDiagonal == mark) { win += 2; }
+            else if (leftLowerMostDiagonal!=board.getEmptyMark()) { tie += 2; }
+        }
+        if (rightLowerMostDiagonal != false)
+        {
+            if (rightLowerMostDiagonal == mark) { win += 2; }
+            else if (rightLowerMostDiagonal!=board.getEmptyMark()) { tie += 2; }
         }
         if (rightLowerDiagonal != false)
         {
-            if (rightLowerDiagonal == mark)
-            {
-                // chase win
-                score += 2;
-            }
-            else if (rightLowerDiagonal!=board.getEmptyMark())
-            {
-                // stop loss
-                score += 1;
-            }
+            if (rightLowerDiagonal == mark) { win += 2; }
+            else if (rightLowerDiagonal!=board.getEmptyMark()) { tie += 2; }
         }
         if (rightUpperDiagonal != false)
         {
-            if (rightUpperDiagonal == mark)
-            {
-                // chase win
-                score += 2;
-            }
-            else if (rightUpperDiagonal!=board.getEmptyMark())
-            {
-                // stop loss
-                score += 1;
-            }
+            if (rightUpperDiagonal == mark) { win += 2; }
+            else if (rightUpperDiagonal!=board.getEmptyMark()) { tie += 2; }
         }
-        return score;
+        if (rightUpperMostDiagonal != false)
+        {
+            if (rightUpperMostDiagonal == mark) { win += 2; }
+            else if (rightUpperMostDiagonal!=board.getEmptyMark()) { tie += 2; }
+        }
+        if (win > tie) { return win; }
+        else { return tie; }
     }
     function minmax () {
         let bestMove = [1,1]
@@ -278,13 +283,18 @@ const bot = ((botmark) => {
             for (let j = 0; j < grid[i].length; j++) {
                 if (board.getCell(i,j) == board.getEmptyMark())
                 {
-                    let rowScore = scoreRow(i,j);
+                    console.log(i + ":" + j)
+                    let maxScore = scoreRow(i,j);
+                    console.log("row" + maxScore)
                     let columnScore = scoreColumn(i,j);
+                    console.log("column" + columnScore)
                     let diagonalScore = scoreDiagonal(i,j);
-                    let sumScore = rowScore + columnScore + diagonalScore
-                    if (sumScore > scoreMove[0])
+                    console.log("diagonal" + diagonalScore)
+                    if (maxScore < columnScore) { maxScore = columnScore; }
+                    if (maxScore < diagonalScore) {maxScore = diagonalScore; }
+                    if (maxScore > scoreMove[0])
                     {
-                        scoreMove = [sumScore, i,j];
+                        scoreMove = [maxScore, i,j];
                         bestMove[0] = i;
                         bestMove[1] = j;
                     }
@@ -293,19 +303,6 @@ const bot = ((botmark) => {
         }
         console.log("odin-bot is thinking ... " + bestMove);
         return bestMove;
-    }
-    function minimax (simulatedBoard, depth, max) {
-        if (depth == 0 || simulatedBoard.getTie())
-        {
-            return simulatedBoard.getState();
-        }
-        if (max)
-        {
-
-        }
-        else {
-
-        }
     }
     function setMark(botmark) {
         mark = botmark
