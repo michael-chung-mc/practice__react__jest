@@ -169,9 +169,6 @@ const bot = ((botmark) => {
     {
         return mark;
     }
-    function isPlayerTwo () {
-        return mark == board.getPlayerTwoMark()
-    }
     function scoreRow (x,y)
     {
         let win = 0;
@@ -342,51 +339,68 @@ const manager = (() => {
     });
     document.getElementById("player_1_name").addEventListener("input", (event) => {
         playerOne.setName(event.target.value);
-        if (event.target.value = ("odin-bot"))
-        {
-            odinBot = bot(board.getPlayerOneMark());
-        }
         updateScreen();
     });
     document.getElementById("player_2_name").addEventListener("input", (event) => {
         playerTwo.setName(event.target.value);
-        if (event.target.value = ("odin-bot"))
-        {
-            odinBot = bot(board.getPlayerTwoMark());
-        }
         updateScreen();
     });
+    document.getElementById("odin_bot_toggle_o").addEventListener("click", (event) => {
+        odinBot = bot(board.getPlayerOneMark());
+        playerOne.setName("odin-bot");
+        document.getElementById("player_1_name").value = playerOne.getName();
+        if (currentPlayer.getMark() == odinBot.getMark())
+        {
+            placeMarker(1,1);
+            switchPlayer();
+            updateScreen();
+        }
+    });
+    document.getElementById("odin_bot_toggle_x").addEventListener("click", (event) => {
+        odinBot = bot(board.getPlayerTwoMark());
+        playerTwo.setName("odin-bot");
+        document.getElementById("player_2_name").value = playerTwo.getName();
+        if (currentPlayer.getMark() == odinBot.getMark())
+        {
+            placeMarker(1,1);
+            switchPlayer();
+            updateScreen();
+        }
+    });
+    function switchPlayer()
+    {
+        if (currentPlayer.getMark() == playerOne.getMark()) {
+            currentPlayer = playerTwo;
+        }
+        else{
+            currentPlayer = playerOne;
+        }
+    }
     function placeMarker (x, y) {
-        return () => {
-            // console.log("Placing Mark:");
-            // console.log(x);
-            // console.log(y);
-            // console.log(currentPlayer);
-            // if (currentPlayer == 1) {
-            //     if (board.setValue(board.getPlayerOneMark(), x, y))
-            //     {
-            //         currentPlayer = 2;
-            //     }
-            // }
-            // else {
-            //     if (board.setValue(board.getPlayerTwoMark(), x, y))
-            //     {
-            //         currentPlayer = 1;
-            //     }
-            // }
-            board.setValue(currentPlayer.getMark(), x, y);
-            if (odinBot != null){
-                let move = odinBot.minmax();
-                board.setValue(odinBot.getMark(), move[0], move[1]);
-            }
-            else
+        if (odinBot != null){
+            // bot is active
+            if (currentPlayer.getMark() == odinBot.getMark())
             {
-                if (currentPlayer == playerOne) {
-                    currentPlayer = playerTwo;
-                }
-                else{
-                    currentPlayer = playerOne;
-                }
+                let move = odinBot.minmax();
+                return board.setValue(odinBot.getMark(), move[0], move[1]);
+            }
+            else {
+                return board.setValue(currentPlayer.getMark(), x, y);
+            }
+        }
+        else {
+            return board.setValue(currentPlayer.getMark(), x, y);
+        }
+    }
+    function makeMove (x, y) {
+        return () =>
+        {
+            placeMarker(x,y);
+            switchPlayer();
+            if (odinBot != null && currentPlayer.getMark() == odinBot.getMark())
+            {
+                placeMarker(x,y);
+                switchPlayer();
             }
             updateScreen();
         }
@@ -411,7 +425,7 @@ const manager = (() => {
                 // cell.setAttribute("class", "x" + i);
                 // cell.setAttribute("class", "y" + j);
                 cell.innerHTML = gameboard[i][j];
-                cell.addEventListener("click", placeMarker(i, j));
+                cell.addEventListener("click", makeMove(i, j));
                 columnDiv.appendChild(cell);
             }
             contentDiv.appendChild(columnDiv);
@@ -424,11 +438,9 @@ const manager = (() => {
             {
                 statusDiv.innerHTML = "Tie!";
             }
-            else if (currentPlayer == playerOne) {
-                statusDiv.innerHTML = playerOne.getName() + "'s Turn";
-            }
-            else {
-                statusDiv.innerHTML = playerTwo.getName() + "'s Turn";
+            else
+            {
+                statusDiv.innerHTML = currentPlayer.getName() + "'s Turn";
             }
         }
         else
