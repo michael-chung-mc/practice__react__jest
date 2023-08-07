@@ -1,5 +1,5 @@
-function ShipFactory (length) {
-    var Ship = {
+function shipFactory (length) {
+    var ship = {
         length : length,
         health : length,
         sunk : false,
@@ -18,7 +18,7 @@ function ShipFactory (length) {
             return this.sunk;
         },
     }
-    return Ship;
+    return ship;
 }
 
-module.exports = ShipFactory;
+module.exports = shipFactory;

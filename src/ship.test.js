@@ -1,7 +1,7 @@
-const ShipFactory = require('./Ship');
+const shipFactory = require('./ship.js');
 
 describe('analyzeShip', () => {
-    let destroyer = ShipFactory(2);
+    let destroyer = shipFactory(2);
     test('destroyer length',()=> {
         expect(destroyer.getLength()).toBe(2);
         expect(destroyer.getSunk()).toBe(false);
@@ -20,22 +20,22 @@ describe('analyzeShip', () => {
         expect(destroyer.getSunk()).toBe(true);
     });
 
-    let submarine = ShipFactory(3);
+    let submarine = shipFactory(3);
     test('submarine length',()=> {
         expect(submarine.getLength()).toBe(3);
     });
 
-    let cruiser = ShipFactory(3);
+    let cruiser = shipFactory(3);
     test('cruiser length',()=> {
         expect(cruiser.getLength()).toBe(3);
     });
 
-    let battleship = ShipFactory(4);
+    let battleship = shipFactory(4);
     test('battleship length',()=> {
         expect(battleship.getLength()).toBe(4);
     });
 
-    let carrier = ShipFactory(5);
+    let carrier = shipFactory(5);
     test('carrier length',()=> {
         expect(carrier.getLength()).toBe(5);
     });

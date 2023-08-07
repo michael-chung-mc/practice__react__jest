@@ -1,5 +1,5 @@
-function BoardFactory (height, width) {
-    var Board = {
+function boardFactory (height, width) {
+    var board = {
         mark : "X",
         emptyMark : " ",
         grid : (() => {
@@ -46,7 +46,7 @@ function BoardFactory (height, width) {
             return false;
         },
     }
-    return Board;
+    return board;
 }
 
-module.exports = BoardFactory;
+module.exports = boardFactory;
