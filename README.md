@@ -27,10 +27,10 @@ Test Driven Development Battleship Game. Rely on Jest not DOM methods or console
 * Jest
 
 ## Roadmap
-- [ ] Begin your app by creating the Ship factory function.
-    - [ ] Your ‘ships’ will be objects that include their length, the number of times they’ve been hit and whether or not they’ve been sunk.
-    - [ ] Ships should have a hit() function that increases the number of ‘hits’ in your ship.
-    - [ ] isSunk() should be a function that calculates it based on their length and the number of ‘hits’.
+- [x] Begin your app by creating the Ship factory function.
+    - [x] Your ‘ships’ will be objects that include their length, the number of times they’ve been hit and whether or not they’ve been sunk.
+    - [x] Ships should have a hit() function that increases the number of ‘hits’ in your ship.
+    - [x] isSunk() should be a function that calculates it based on their length and the number of ‘hits’.
 - [ ] Create Gameboard factory.
     - [ ] Gameboards should be able to place ships at specific coordinates by calling the ship factory function.
     - [ ] Gameboards should have a receiveAttack function that takes a pair of coordinates, determines whether or not the attack hit a ship and then sends the ‘hit’ function to the correct ship, or records the coordinates of the missed shot.
