@@ -59,6 +59,34 @@ function gameboardFactory (height, width) {
             }
             return found;
         },
+        receiveAttack : function (x,y)
+        {
+            if (!this.b.getMarked(x,y))
+            {
+                let target = this.getShip(x,y);
+                if (target != null)
+                {
+                    target.hit();
+                }
+                this.b.setMark(x,y);
+            }
+        },
+        battleReport : function () {
+            let sunk = [];
+            let alive = [];
+            for (const key of this.ships.keys())
+            {
+                if (key.isSunk())
+                {
+                    sunk.push(key);
+                }
+                else
+                {
+                    alive.push(key)
+                }
+            }
+            return alive.length == 0;
+        }
     }
     return gameboard;
 }

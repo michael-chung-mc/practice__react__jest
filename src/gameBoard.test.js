@@ -12,4 +12,12 @@ describe('Test Gameboard', () =>
         expect(gb.getShip(0,0)).not.toBe(null);
         expect(gb.getShip(0,0).getLength()).toBe(2);
     })
+    test('attack destroyer', () => {
+        gb.receiveAttack(0,0);
+        expect(gb.battleReport()).toBe(false);
+        gb.receiveAttack(0,0);
+        expect(gb.battleReport()).toBe(false);
+        gb.receiveAttack(1,0);
+        expect(gb.battleReport()).toBe(true);
+    })
 });
