@@ -13,11 +13,16 @@ describe('Test Gameboard', () =>
         expect(gb.getShip(0,0).getLength()).toBe(2);
     })
     test('attack destroyer', () => {
+        expect(gb.checkValidMove(0,0)).toBe(true);
         gb.receiveAttack(0,0);
+        expect(gb.checkValidMove(0,0)).toBe(false);
         expect(gb.battleReport()).toBe(false);
         gb.receiveAttack(0,0);
+        expect(gb.checkValidMove(0,0)).toBe(false);
         expect(gb.battleReport()).toBe(false);
+        expect(gb.checkValidMove(1,0)).toBe(true);
         gb.receiveAttack(1,0);
+        expect(gb.checkValidMove(0,0)).toBe(false);
         expect(gb.battleReport()).toBe(true);
     })
 });

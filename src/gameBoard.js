@@ -5,6 +5,9 @@ function gameboardFactory (height, width) {
     let gameboard = {
         b : new board(height, width),
         ships : new Map (),
+        checkValidMove : function (x,y) {
+            return !(this.b.getMarked(x,y));
+        },
         getWidth : function () { return this.b.getWidth(); },
         getHeight : function () { return this.b.getHeight(); },
         setShip : function (startX, startY, exclusiveEndX, exclusiveEndY)

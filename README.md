@@ -17,15 +17,16 @@
 </details>
 
 ## About This
-The Odin Project Battleship
+The Odin Project Battleship Assignment
 
 ### What
 
-Battleship Game.
+Battleship Game
 
 ### Why
 
-Test Test Driven Development. Rely on Jest not DOM methods or console.log().
+Test Test Driven Development.
+Rely on Jest not DOM methods or console.log() during development.
 
 ### How
 * Tech
