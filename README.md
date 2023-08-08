@@ -4,9 +4,11 @@
     <summary>Table of Contents</summary>
     <ol>
         <li>
-            <a href="#about-the-project">About the Project</a>
+            <a href="#about-this">About This</a>
             <ul>
-                <li><a href="#built-width">Built With</li>
+                <li><a href="#what">What</li>
+                <li><a href="#why">Why</li>
+                <li><a href="#how">How</li>
             </ul>
         </li>
         <li><a href="#roadmap">Roadmap</li>
@@ -14,17 +16,22 @@
     </ol>
 </details>
 
-## About The Project
+## About This
 The Odin Project Battleship
 
-Assignment Details:
+### What
 
-Test Driven Development Battleship Game. Rely on Jest not DOM methods or console.log().
+Battleship Game.
 
-### Built With
-* HTML
-* Javascript
-* Jest
+### Why
+
+Test Test Driven Development. Rely on Jest not DOM methods or console.log().
+
+### How
+* Tech
+    * HTML
+    * Javascript
+    * Jest
 
 ## Roadmap
 - [x] Begin your app by creating the Ship factory function.
