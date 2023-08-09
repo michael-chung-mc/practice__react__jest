@@ -64,7 +64,7 @@ function gameboardFactory (height, width) {
         },
         receiveAttack : function (x,y)
         {
-            if (!this.b.getMarked(x,y))
+            if (this.checkValidMove(x,y))
             {
                 let target = this.getShip(x,y);
                 if (target != null)
@@ -72,7 +72,9 @@ function gameboardFactory (height, width) {
                     target.hit();
                 }
                 this.b.setMark(x,y);
+                return true;
             }
+            return false;
         },
         battleReport : function () {
             let sunk = [];

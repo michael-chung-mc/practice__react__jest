@@ -1,8 +1,8 @@
-const gameboard = require('./gameBoard.js')
+const gameboard = require('./gameBoard.js');
 
 describe('Test Gameboard', () =>
 {
-    let gb = new gameboard(10,10);
+    let gb = gameboard(10,10);
     test('test gb', () => {
         expect(gb.getWidth()).toBe(10);
         expect(gb.getHeight()).toBe(10);
@@ -22,7 +22,7 @@ describe('Test Gameboard', () =>
         expect(gb.battleReport()).toBe(false);
         expect(gb.checkValidMove(1,0)).toBe(true);
         gb.receiveAttack(1,0);
-        expect(gb.checkValidMove(0,0)).toBe(false);
+        expect(gb.checkValidMove(1,0)).toBe(false);
         expect(gb.battleReport()).toBe(true);
     })
 });

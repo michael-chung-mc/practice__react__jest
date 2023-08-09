@@ -1,7 +1,7 @@
 function boardFactory (height, width) {
     var board = {
         mark : "X",
-        emptyMark : " ",
+        emptyMark : "-",
         grid : (() => {
             let arr = []
             for (let i = 0; i < width; i++)
