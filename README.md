@@ -1,11 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # theodinproject--cv-application
 <a name="readme-top"></a>
 <details>
@@ -51,8 +43,6 @@ Test React knowledge.
 [ ] Create a components directory under your src directory and add your components.
 [ ] Include a styles directory under your src directory for your CSS files. You’ll need to import these in the component files to use them.
 [ ] Push the results and deploy them with any of the options mentioned below!
-
-
 
 ## Acknowledgements
 * [The Odin Project](https://www.theodinproject.com/)
