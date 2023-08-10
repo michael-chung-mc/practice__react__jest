@@ -20,8 +20,8 @@
 The Odin Project: CV Application
 
 <p float="left">
-    <img src="/public/example.png" width="40%" />
-    <img src="/public/example__submission.png" width="40%" />
+    <img src="/public/example.png" width="40%" height = 128px/>
+    <img src="/public/example__submission.png" width="40%" height = 128px/>
 </p>
 
 ### What
