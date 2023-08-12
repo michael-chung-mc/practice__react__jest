@@ -1,5 +1,11 @@
 const gameboard = require('./gameBoard.js');
 
+describe('canary', ()=> {
+    it('test test infrastructure', ()=> {
+        expect(true).toBe(true);
+    });
+})
+
 describe('Test Gameboard', () =>
 {
     let gb = gameboard(10,10);

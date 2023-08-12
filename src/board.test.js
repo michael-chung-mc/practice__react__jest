@@ -1,5 +1,11 @@
 const boardFactory = require('./board.js')
 
+describe('canary', ()=> {
+    it('test test infrastructure', ()=> {
+        expect(true).toBe(true);
+    });
+})
+
 describe('Test Board', () =>
 {
     var b = boardFactory(10,10);

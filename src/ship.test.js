@@ -1,5 +1,11 @@
 const shipFactory = require('./ship.js');
 
+describe('canary', ()=> {
+    it('test test infrastructure', ()=> {
+        expect(true).toBe(true);
+    });
+})
+
 describe('analyzeShip', () => {
     let destroyer = shipFactory(2);
     test('destroyer length',()=> {

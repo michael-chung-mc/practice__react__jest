@@ -1,6 +1,12 @@
 const player = require('./player.js');
 const gb = require('./gameBoard.js');
 
+describe('canary', ()=> {
+    it('test test infrastructure', ()=> {
+        expect(true).toBe(true);
+    });
+})
+
 describe ('test player', () => {
     let boardOne = gb(10,10);
     let boardTwo = gb(10,10);
