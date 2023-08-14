@@ -34,6 +34,7 @@ Manage and utilize state while fetching and using data from an external API.
 * Click Card
 * Track Score
 * Track Best Score
+
 ```mermaid
 ---
 title: Event Loop
@@ -70,7 +71,7 @@ classDiagram
 title: Software Architecture
 ---
 flowchart LR
-    A[App] --> B[API] <--> A[(database)]
+    A[App] --> B[API] <--> C[(database)]
 
 ```
 ## Roadmap
