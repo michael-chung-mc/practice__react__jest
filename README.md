@@ -32,18 +32,32 @@ Manage and utilize state while fetching and using data from an external API.
 ### How
 #### Requirements
 * Click Card
+* Track Score
 * Track Best Score
+```mermaid
+---
+title: Event Loop
+---
+flowchart TD
+    (Start) --> A[Wait]
+    A --> B[Click]
+    B --> C[UpdateScore]
+    C -- New High Score --> D[UpdateMaxScore]
+    B --> E[RefreshCards]
+    E --> A
+```
 #### Design
 ```mermaid
 ---
-title: Game Loop
+title: Software Architecture
 ---
-stateDiagram-v2
-    Wait --> Click
-    Click --> UpdateScore
-    UpdateScore --> UpdateMaxScore
-    Click --> RefreshCards
-    RefreshCards --> Wait
+classDiagram
+    class card~ReactJS~{
+    }
+    class scoreboard~ReactJS~{
+
+    }
+    card <|-- scoreboard
 ```
 #### Architecture
 * Tech Stack
@@ -51,6 +65,14 @@ stateDiagram-v2
         * React
         * ViteJS
 
+```mermaid
+---
+title: Software Architecture
+---
+flowchart LR
+    A[App] --> B[API] <--> A[(database)]
+
+```
 ## Roadmap
 - [x] Create a new React Project.
 - [ ] Take some time to think about the features you want to implement, which components you need, how to structure your application, and how to get the images from an API.
