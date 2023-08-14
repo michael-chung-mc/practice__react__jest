@@ -40,12 +40,12 @@ Manage and utilize state while fetching and using data from an external API.
 title: Event Loop
 ---
 flowchart TD
-    (Start) --> A[Wait]
-    A --> B[Click]
-    B --> C[UpdateScore]
-    C -- New High Score --> D[UpdateMaxScore]
-    B --> E[RefreshCards]
-    E --> A
+    A([Start]) --> B[Wait]
+    B --> C[Click]
+    C --> D[UpdateScore]
+    D -- New High Score --> E[UpdateMaxScore]
+    C --> F[RefreshCards]
+    F --> B
 ```
 #### Design
 ```mermaid
