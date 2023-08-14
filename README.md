@@ -31,7 +31,20 @@ Manage and utilize state while fetching and using data from an external API.
 
 ### How
 #### Requirements
+* Click Card
+* Track Best Score
 #### Design
+```mermaid
+---
+title: Game Loop
+---
+stateDiagram-v2
+    Wait --> Click
+    Click --> UpdateScore
+    UpdateScore --> UpdateMaxScore
+    Click --> RefreshCards
+    RefreshCards --> Wait
+```
 #### Architecture
 * Tech Stack
     * Frontend
@@ -39,7 +52,7 @@ Manage and utilize state while fetching and using data from an external API.
         * ViteJS
 
 ## Roadmap
-- [ ] Create a new React Project.
+- [x] Create a new React Project.
 - [ ] Take some time to think about the features you want to implement, which components you need, how to structure your application, and how to get the images from an API.
     - [ ] a scoreboard, which counts the current score, and a “Best Score”, which shows the highest score you’ve achieved thus far.
     - [ ] should display the cards in a random order anytime a user clicks one
