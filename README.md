@@ -30,6 +30,9 @@ Test React knowledge.
 Manage and utilize state while fetching and using data from an external API.
 
 ### How
+#### Requirements
+#### Design
+#### Architecture
 * Tech Stack
     * Frontend
         * React
