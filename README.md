@@ -48,24 +48,26 @@ flowchart TD
     F --> B
 ```
 #### Design
-```mermaid
----
-title: Software Architecture
----
-classDiagram
-    class card~ReactJS~{
-    }
-    class scoreboard~ReactJS~{
-
-    }
-    card <|-- scoreboard
-```
-#### Architecture
 * Tech Stack
     * Frontend
         * React
         * ViteJS
 
+```mermaid
+---
+title: Software Architecture
+---
+classDiagram
+    class App~ReactJS~{
+    }
+    class Card~ReactJS~{
+    }
+    class Scoreboard~ReactJS~{
+    }
+    App --|> Card
+    Card --|> Scoreboard
+```
+#### Architecture
 ```mermaid
 ---
 title: Software Architecture
