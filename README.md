@@ -3,79 +3,31 @@
 <details>
     <summary>Table of Contents</summary>
     <ol>
-        <li>
-            <a href="#about-this">About This</a>
-            <ul>
-                <li><a href="#what">What</li>
-                <li><a href="#why">Why</li>
-                <li><a href="#how">How</li>
-            </ul>
-        </li>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#design">Design</li>
         <li><a href="#roadmap">Roadmap</li>
         <li><a href="#acknowledgements">Acknowledgements</li>
     </ol>
 </details>
 
-## About This
+## Requirements
 
-The Odin Project: Memory Card Game
+Memory Card Game that tests memory by asking users to remember already picked cards by picking different ones.
 
-### What
+MVP
+- Click Card
+- Track Score
+- Track Best Score
 
-Game that tests memory by asking users to remember already picked cards by picking different ones.
+To Test React knowledge.
+- Manage and utilize state while fetching and using data from an external API.
 
-### Why
-
-Test React knowledge.
-Manage and utilize state while fetching and using data from an external API.
-
-### How
-#### Requirements
-* Click Card
-* Track Score
-* Track Best Score
-
-```mermaid
----
-title: Event Loop
----
-flowchart TD
-    A([Start]) --> B[Wait]
-    B --> C[Click]
-    C --> D[UpdateScore]
-    D -- New High Score --> E[UpdateMaxScore]
-    C --> F[RefreshCards]
-    F --> B
-```
-#### Design
+## Design
 * Tech Stack
     * Frontend
         * React
         * ViteJS
 
-```mermaid
----
-title: Software Architecture
----
-classDiagram
-    class App~ReactJS~{
-    }
-    class Card~ReactJS~{
-    }
-    class Scoreboard~ReactJS~{
-    }
-    App --|> Card
-    Card --|> Scoreboard
-```
-#### Architecture
-```mermaid
----
-title: Software Architecture
----
-flowchart LR
-    A[App] --> B[API] <--> C[(database)]
-
-```
 ## Roadmap
 - [x] Create a new React Project.
 - [ ] Take some time to think about the features you want to implement, which components you need, how to structure your application, and how to get the images from an API.
