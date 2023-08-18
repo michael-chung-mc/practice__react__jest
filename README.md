@@ -1,8 +1,26 @@
-# React + Vite
+# practice__react__jest
+<a name="readme-top"></a>
+<details>
+    <summary>Table of Contents</summary>
+    <ol>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#design">Design</li>
+        <li><a href="#roadmap">Roadmap</li>
+        <li><a href="#acknowledgements">Acknowledgements</li>
+    </ol>
+</details>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Requirements
 
-Currently, two official plugins are available:
+## Design
+* Tech Stack
+    * Frontend
+        * React
+        * ViteJS
+        * Jest
+## Roadmap
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Acknowledgements
+* [Full Stack Open](https://www.fullstackopen.com/)
+* [ViteJs](https://vitejs.dev)
+<p align="right">(<a href="#readme-top">back to top </a>)</p>
