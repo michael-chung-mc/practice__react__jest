@@ -3,13 +3,11 @@
 <details>
     <summary>Table of Contents</summary>
     <ol>
-        <li>
-            <a href="#goals">Goals</a>
+        <li><a href="#goals">Goals</a>
             <li><a href="#about">About</a></li>
             <li><a href="#requirements">Requirements</a></li>
         </li>
-        <li>
-            <a href="#design">Design</a>
+        <li><a href="#design">Design</a>
             <li><a href="#tools">Tools</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
         </li>
