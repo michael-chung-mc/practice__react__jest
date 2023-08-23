@@ -5,13 +5,13 @@
     <ol>
         <li>
             <a href="#goals">Goals</a>
-            <ul><a href="#about">About</a></ul>
-            <ul><a href="#requirements">Requirements</a></ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#requirements">Requirements</a></li>
         </li>
         <li>
             <a href="#design">Design</a>
-            <ul><a href="#tools">Tools</a></ul>
-            <ul><a href="#roadmap">Roadmap</a></ul>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
         </li>
         <li><a href="#acknowledgements">Acknowledgements</a></li>
     </ol>
