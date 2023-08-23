@@ -3,23 +3,30 @@
 <details>
     <summary>Table of Contents</summary>
     <ol>
-        <li><a href="#requirements">Requirements</a></li>
-        <li><a href="#design">Design</li>
-        <li><a href="#roadmap">Roadmap</li>
-        <li><a href="#acknowledgements">Acknowledgements</li>
+        <li>
+            <a href="#goals">Goals</a>
+            <ul><a href="#about">About</a></ul>
+            <ul><a href="#requirements">Requirements</a></ul>
+        </li>
+        <li>
+            <a href="#design">Design</a>
+            <ul><a href="#tools">Tools</a></ul>
+            <ul><a href="#roadmap">Roadmap</a></ul>
+        </li>
+        <li><a href="#acknowledgements">Acknowledgements</a></li>
     </ol>
 </details>
 
-## Requirements
-
+## Goals
+### About
+### Requirements
 ## Design
-* Tech Stack
-    * Frontend
-        * React
-        * ViteJS
-        * Jest
-## Roadmap
-
+### Tools
+    * React
+    * ViteJS
+    * Jest
+    * React-Testing-Library
+### Roadmap
 ## Acknowledgements
 * [Full Stack Open](https://www.fullstackopen.com/)
 * [ViteJs](https://vitejs.dev)
