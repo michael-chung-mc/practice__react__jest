@@ -80,9 +80,9 @@ const FunctionalInput = ({ name }) => {
       {/* The list of all the To-Do's, displayed */}
       <ul>
         {todos.map((todo, index) => (
-          <li>
+          <li key={index}>
             {edit ?
-              <input key={index} defaultValue={todo} onChange={handleInputEdit}></input> :
+              <input defaultValue={todo} onChange={handleInputEdit}></input> :
               <>{todo}</>
             }
             {edit ?

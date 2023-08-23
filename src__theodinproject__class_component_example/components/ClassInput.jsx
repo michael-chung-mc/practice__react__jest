@@ -9,22 +9,17 @@ class ClassInput extends Component {
       todos: ['Just some demo tasks', 'As an example'],
       inputVal: '',
       count: 2,
+      edit: false,
+      editVal: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputEdit = this.handleInputEdit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleReSubmit = this.handleReSubmit.bind(this);
   }
-
-//   componentDidUpdate(prevProps) {
-//     if (this.props.userID != prevProps.userID) {
-//         this.setState((state) => ({
-//           ...state,
-//           count: this.state.todos.length,
-//         }));
-//     }
-//   }
 
   handleInputChange(e) {
     this.setState((state) => ({
@@ -33,9 +28,17 @@ class ClassInput extends Component {
     }));
   }
 
+  handleInputEdit = (e) => {
+    this.setState((state) => ({
+      ...state,
+      editVal: e.target.value,
+    }));
+  };
+
   handleSubmit(e) {
     e.preventDefault();
     this.setState((state) => ({
+      ...state,
       todos: state.todos.concat(state.inputVal),
       inputVal: '',
       count: this.state.todos.length+1,
@@ -52,19 +55,25 @@ class ClassInput extends Component {
         }
     }
     this.setState((state)=> ({
+        ...state,
         todos: arr,
         inputVal: '',
         count: this.state.todos.length-1,
     }));
   };
-
-  handleEdit = (index, text) => {
+  handleEdit = () => {
+    this.setState((state)=> ({
+      ...state,
+      edit: true,
+    }));
+  }
+  handleReSubmit = (index) => {
     let arr = [];
     for (let i = 0; i < this.state.todos.length; i++)
     {
         if (i == index)
         {
-            arr.push(text);
+            arr.push(this.state.editVal);
         }
         else
         {
@@ -72,10 +81,12 @@ class ClassInput extends Component {
         }
     }
     this.setState((state)=> ({
-        todos: arr,
         ...state,
+        todos: arr,
+        edit: false,
+        editVal: "",
     }));
-  }
+  };
 
   render() {
     return (
@@ -97,10 +108,17 @@ class ClassInput extends Component {
         <h4>{this.state.count} tasks!</h4>
         {/* The list of all the To-Do's, displayed */}
         <ul>
-          {this.state.todos.map((todo,index) => (
-            <li> 
-                <input key={index} value={todo} onChange={(e)=>this.handleEdit(index, e.target.value)}></input>
-                <button onClick={()=>this.handleDelete(index)}>Delete</button>
+          {this.state.todos.map((todo, index) => (
+            <li key={index}>
+              {this.state.edit ?
+                <input defaultValue={todo} onChange={this.handleInputEdit}></input> :
+                <>{todo}</>
+              }
+              {this.state.edit ?
+                <button onClick={()=>this.handleReSubmit(index)}>Resubmit</button> :
+                <button onClick={this.handleEdit}>Edit</button> 
+              }
+              <button onClick={()=>this.handleDelete(index)}>Delete</button>
             </li>
           ))}
         </ul>
