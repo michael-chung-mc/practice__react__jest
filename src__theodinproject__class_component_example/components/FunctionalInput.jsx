@@ -10,6 +10,8 @@ const FunctionalInput = ({ name }) => {
   const [todos, setTodos] = useState(['Just some demo tasks', 'As an example']);
   const [inputVal, setInputVal] = useState('');
   const [count, setCount] = useState(todos.length);
+  const [edit, setEdit] = useState(false);
+  const [editVal, setEditVal] = useState('');
 
   useEffect(() => {
     setCount(todos.length);
@@ -19,10 +21,32 @@ const FunctionalInput = ({ name }) => {
     setInputVal(e.target.value);
   };
 
+  const handleInputEdit = (e) => {
+    setEditVal(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setTodos((todo) => [...todo, inputVal]);
     setInputVal('');
+  };
+
+  const handleReSubmit = (index) => {
+    let arr = [];
+    for (let i = 0; i < todos.length; i++)
+    {
+        if (i == index)
+        {
+            arr.push(editVal);
+        }
+        else
+        {
+            arr.push(todos[i]);
+        }
+    }
+    setTodos(arr);
+    setEdit(false);
+    setEditVal("");
   };
 
   const handleDelete = (index) => {
@@ -36,22 +60,6 @@ const FunctionalInput = ({ name }) => {
     }
     setTodos(arr);
   };
-
-  const handleEdit = (index, text) => {
-    let arr = [];
-    for (let i = 0; i < todos.length; i++)
-    {
-        if (i == index)
-        {
-            arr.push(text);
-        }
-        else
-        {
-            arr.push(todos[i]);
-        }
-    }
-    setTodos(arr);
-  }
 
   return (
     <section>
@@ -73,7 +81,14 @@ const FunctionalInput = ({ name }) => {
       <ul>
         {todos.map((todo, index) => (
           <li>
-            <input key={index} defaultValue={todo} onChange={(e)=>handleEdit({index}, e.target.value)}></input>
+            {edit ?
+              <input key={index} defaultValue={todo} onChange={handleInputEdit}></input> :
+              <>{todo}</>
+            }
+            {edit ?
+              <button onClick={()=>handleReSubmit(index)}>Resubmit</button> :
+              <button onClick={()=>setEdit(true)}>Edit</button> 
+            }
             <button onClick={()=>handleDelete(index)}>Delete</button>
           </li>
         ))}
