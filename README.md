@@ -30,6 +30,7 @@
 ### About
 play against a computer
 ### Preview
+michael-chung-mc.github.io/games__ai/
 ## Design
 ### Requirements
 ### Tools
