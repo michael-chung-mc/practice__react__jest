@@ -36,6 +36,7 @@ michael-chung-mc.github.io/games__ai/
 ### Tools
 ### Roadmap
 - [x] rock paper scissors
+- [x] tictactoe
 - [ ] style root index.html
 ## Usage
 ### Install
