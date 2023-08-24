@@ -26,7 +26,6 @@
     </ol>
 </details>
 
-<<<<<<< HEAD
 ## Goals
 ### About
 play against a computer
