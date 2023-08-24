@@ -72,6 +72,4 @@ TDD
 ### Run
 ## Acknowledgements
 * [The Odin Project](https://www.theodinproject.com/)
-* [Full Stack Open](https://www.fullstackopen.com/)
-* [ViteJs](https://vitejs.dev)
 <p align="right">(<a href="#readme-top">back to top </a>)</p>
