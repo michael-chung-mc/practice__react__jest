@@ -3,32 +3,49 @@
 <details>
     <summary>Table of Contents</summary>
     <ol>
-        <li> <a href="#goals">Goals</a>
+        <li><a href="#goals">Goals</a>
             <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#about">About</li>
+                <li><a href="#preview">Preview</li>
             </ul>
         </li>
-        <li><a href="#design">Design</a>
+        <li><a href="#design">Design</li>
+          <ul>
+            <li><a href="#requirements">Tools</li>
+            <li><a href="#tools">Tools</li>
+            <li><a href="#roadmap">Roadmap</li>
+          </ul>
+        </li>
+        <li><a href="#usage">Usage</a>
             <ul>
-            <li><a href="#tools">Tools</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#install">Install</li>
+                <li><a href="#run">Run</li>
             </ul>
         </li>
-        <li><a href="#acknowledgements">Acknowledgements</a></li>
+        <li><a href="#acknowledgements">Acknowledgements</li>
     </ol>
 </details>
 
 ## Goals
 ### About
-### Requirements
+### Preview
 ## Design
+### Requirements
 ### Tools
     * React
     * ViteJS
     * Jest
     * React-Testing-Library
 ### Roadmap
+- [x] cv app
+    - [x] A section to add general information like name, email and phone number.
+    - [x] A section to add your educational experience (school name, title of study and date of study)
+    - [x] A section to add practical experience (company name, position title, main
+    - [x] edit and submit
+    - [x] styles
+## Usage
+### Install
+### Run
 ## Acknowledgements
 * [The Odin Project](https://www.theodinproject.com/)
 * [Full Stack Open](https://www.fullstackopen.com/)
