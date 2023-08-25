@@ -39,11 +39,12 @@
 ### Roadmap
 <details>
 <summary>cv app</summary>
-- [x] A section to add general information like name, email and phone number.
-- [x] A section to add your educational experience (school name, title of study and date of study)
-- [x] A section to add practical experience (company name, position title, main
-- [x] edit and submit
-- [x] styles
+- [x] mvp
+    - [x] A section to add general information like name, email and phone number.
+    - [x] A section to add your educational experience (school name, title of study and date of study)
+    - [x] A section to add practical experience (company name, position title, main
+    - [x] edit and submit
+    - [x] styles
 </details>
 
 ## Usage
