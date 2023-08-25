@@ -39,6 +39,7 @@
 ### Roadmap
 <details>
 <summary>cv app</summary>
+
 - [x] mvp
     - [x] A section to add general information like name, email and phone number.
     - [x] A section to add your educational experience (school name, title of study and date of study)
