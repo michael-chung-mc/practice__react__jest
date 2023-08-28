@@ -1,41 +1,54 @@
-# theodinproject__memory_card
+# game__brain_games
 <a name="readme-top"></a>
 <details>
     <summary>Table of Contents</summary>
     <ol>
-        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#goals">Goals</a>
+            <ul>
+                <li><a href="#about">About</li>
+                <li><a href="#preview">Preview</li>
+            </ul>
+        </li>
         <li><a href="#design">Design</li>
-        <li><a href="#roadmap">Roadmap</li>
+          <ul>
+            <li><a href="#requirements">Tools</li>
+            <li><a href="#tools">Tools</li>
+            <li><a href="#roadmap">Roadmap</li>
+          </ul>
+        </li>
+        <li><a href="#usage">Usage</a>
+            <ul>
+                <li><a href="#install">Install</li>
+                <li><a href="#run">Run</li>
+            </ul>
+        </li>
         <li><a href="#acknowledgements">Acknowledgements</li>
     </ol>
 </details>
 
-## Requirements
-
-Memory Card Game that tests memory by asking users to remember already picked cards by picking different ones.
-
-MVP
-- Click Card
-- Track Score
-- Track Best Score
-
-To Test React knowledge.
-- Manage and utilize state while fetching and using data from an external API.
-
+## Goals
+### About
+### Preview
 ## Design
-* Tech Stack
-    * Frontend
-        * React
-        * ViteJS
+### Requirements
+### Tools
+    * React
+    * ViteJS
+    * Jest
+    * React-Testing-Library
+### Roadmap
+<details>
+<summary>memory card game</summary>
 
-## Roadmap
-- [x] Create a new React Project.
-- [ ] Take some time to think about the features you want to implement, which components you need, how to structure your application, and how to get the images from an API.
-    - [ ] a scoreboard, which counts the current score, and a “Best Score”, which shows the highest score you’ve achieved thus far.
-    - [ ] should display the cards in a random order anytime a user clicks one
-- [ ] Style your application so you can show it off!
-- [ ] As always, push the project to GitHub, and don’t forget to deploy it.
+- [x] memory card game mvp
+    - [ ] display cards
+    - [ ] track score
+    - [ ] track best score
+</details>
 
+## Usage
+### Install
+### Run
 ## Acknowledgements
 * [The Odin Project](https://www.theodinproject.com/)
 * [ViteJs](https://vitejs.dev)

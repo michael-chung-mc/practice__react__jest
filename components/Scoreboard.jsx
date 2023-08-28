@@ -4,7 +4,7 @@ function Scoreboard({score, best}) {
     return (
       <>
         <div>BestScore: {best}</div>
-        Current Score: {score}
+        <div>Current Score: {score}</div>
       </>
     )
 }
