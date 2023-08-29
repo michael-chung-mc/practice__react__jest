@@ -38,9 +38,20 @@
     * React-Testing-Library
 ### Roadmap
 <details>
+<summary>arithmetic speed drill</summary>
+
+- [x] arithmetic speed drill mvp
+    - [x] addition questions
+    - [x] subtraction questions
+    - [x] multiplication questions
+    - [x] division questions
+    - [ ] timer
+    - [ ] history tracking of questions & times to gauge ability
+</details>
+<details>
 <summary>memory card game</summary>
 
-- [x] memory card game mvp
+- [ ] memory card game mvp
     - [ ] display cards
     - [ ] track score
     - [ ] track best score
