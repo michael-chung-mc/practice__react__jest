@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 export function QuestionAdd () {
-    const [answer, setAnswer] = useState(null);
+    const [answer, setAnswer] = useState("");
     const [a, setA] = useState(50);
     const [b, setB] = useState(50);
     const [operator, setOperator] = useState('+');
@@ -21,46 +21,58 @@ export function QuestionAdd () {
         if (newOperator == "/" && newA < newB)
         {
             const tmp = newA;
-            newA = tmp;
-            newB = newA;
+            newA = newB;
+            newB = tmp;
         }
         else if (newOperator == "*")
         {
-            if (newA > 20 && newB > 20)
+            while (newA > 20 && newB > 20)
             {
-                newB=Math.floor(newB/20);
+                newB=Math.floor(newB/10);
             }
         }
         setOperator(newOperator);
         setA(Math.floor(Math.random()*(max-min)));
         setB(Math.floor(Math.random()*(max-min)));
     };
-    function validateInput(input)
-    {
-        return true;
-    };
     function handleInput(input)
     {
-        if (validateInput(input))
+        if ((operator=='+' && a+b==input)
+        || (operator=='-' && a-b==input)
+        || (operator=='*' && a-b==input)
+        || (operator=='/' && a-b==input))
         {
-            if ((operator=='+' && a+b==input)
-            || (operator=='-' && a-b==input)
-            || (operator=='*' && a-b==input)
-            || (operator=='/' && a-b==input))
-            {
-                generateQuestion();
-                setAnswer("");
-                setScore(score+1);
-            }
-            else
-            {
-                setAnswer(input);
-            }
+            generateQuestion();
+            setAnswer("");
+            setScore(score+1);
+        }
+        else
+        {
+            setAnswer(input);
         }
     };
+    function handleMin(input)
+    {
+        if (input < max)
+        {
+            setMin(input);
+        }
+    }
+    function handleMax(input)
+    {
+        if (input > min)
+        {
+            setMax(input);
+        }
+    }
     return (
         <>
-            <section>Operand Range: {min} and {max}</section>
+            <title>Arithmetic Speed Drill</title>
+            <section>Operand Range:
+                <input value={min} onChange={(e)=>handleMin(e.target.value)}></input>
+                and
+                <input value={max} onChange={(e)=>handleMax(e.target.value)}></input>
+            </section>
             <section>Score: {score}</section>
             <section>{a}{operator}{b}</section>
             <input value={answer} onChange={(e)=>handleInput(e.target.value)}></input>
