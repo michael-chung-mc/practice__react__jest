@@ -45,6 +45,8 @@
     - [x] subtraction questions
     - [x] multiplication questions
     - [x] division questions
+    - [ ] fractional multiplication
+    - [ ] fractional division
     - [ ] timer
     - [ ] history tracking of questions & times to gauge ability
 </details>
@@ -56,6 +58,8 @@
     - [ ] track score
     - [ ] track best score
 </details>
+- [ ] database storage
+- [ ] analyze of results to offer insight for growth
 
 ## Usage
 ### Install
