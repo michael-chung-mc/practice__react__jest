@@ -45,8 +45,9 @@
     - [x] subtraction questions
     - [x] multiplication questions
     - [x] division questions
-    - [ ] fractional multiplication
-    - [ ] fractional division
+    - [x] decimal place arithmetic
+    - [x] fractional multiplication
+    - [x] fractional division
     - [ ] timer
     - [ ] history tracking of questions & times to gauge ability
 </details>
