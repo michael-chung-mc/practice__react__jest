@@ -40,8 +40,11 @@ TDD
     * Javascript
     * Jest
 ### Roadmap
-- [x] rock paper scissors
-- [x] tictactoe
+[x] rock paper scissors
+[x] tictactoe
+<details>
+<summary>Battleship</summary>
+
 - [ ] Battleship
     - [x] Ship factory function.
         - [x] length, health, sunk
@@ -66,7 +69,31 @@ TDD
         - [ ] There are several options available for letting users place their ships. You can let them type coordinates for each ship, or investigate implementing drag and drop.
         - [ ] You can polish the intelligence of the computer player by having it try adjacent slots after getting a ‘hit’.
         - [ ] Optionally, create a 2 player option that lets users take turns by passing the device back and forth. If you’re going to go this route, make sure the game is playable on a mobile screen and implement a ‘pass device’ screen so that players don’t see each others boards!
-- [ ] style root index.html
+</details>
+
+<details>
+<summary>brain games</summary>
+
+- [x] arithmetic speed drill mvp
+    - [x] addition questions
+    - [x] subtraction questions
+    - [x] multiplication questions
+    - [x] division questions
+    - [x] decimal place arithmetic
+    - [x] fractional multiplication
+    - [x] fractional division
+    - [ ] timer
+    - [ ] history tracking of questions & times to gauge ability
+- [ ] memory card game mvp
+    - [ ] display cards
+    - [ ] track score
+    - [ ] track best score
+- [ ] database storage
+- [ ] analyze of results to offer insight for growth
+
+</details>
+
+[ ] style root index.html
 ## Usage
 ### Install
 ### Run
