@@ -1,4 +1,4 @@
-# practice__react__jest
+# wip__react__jest
 <a name="readme-top"></a>
 <details>
     <summary>Table of Contents</summary>
@@ -27,25 +27,31 @@
 </details>
 
 ## Goals
+Practice ReactJS
 ### About
 ### Preview
 ## Design
 ### Requirements
 ### Tools
-    * React
-    * ViteJS
-    * Jest
-    * React-Testing-Library
+* React
+* ViteJS
+* Jest
+* React-Testing-Library
+* Visual Studio Code
+* Xubuntu
+* VirtualBox
+* Git
 ### Roadmap
 <details>
 <summary>cv app</summary>
 
-- [x] mvp
+- [x] cv app mvp
     - [x] A section to add general information like name, email and phone number.
     - [x] A section to add your educational experience (school name, title of study and date of study)
     - [x] A section to add practical experience (company name, position title, main
     - [x] edit and submit
     - [x] styles
+    
 </details>
 
 ## Usage
@@ -54,5 +60,6 @@
 ## Acknowledgements
 * [The Odin Project](https://www.theodinproject.com/)
 * [Full Stack Open](https://www.fullstackopen.com/)
+* [React Router](https://www.reactrouter.com/)
 * [ViteJs](https://vitejs.dev)
 <p align="right">(<a href="#readme-top">back to top </a>)</p>
