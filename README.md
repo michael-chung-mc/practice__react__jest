@@ -1,4 +1,4 @@
-# games__ai
+# wip__html__css__javascript__jest
 <a name="readme-top"></a>
 <details>
     <summary>Table of Contents</summary>
@@ -28,11 +28,10 @@
 
 ## Goals
 ### About
-play against a computer
+Practice HTML && CSS && Javascript && Jest
 ### Preview
-https://michael-chung-mc.github.io/games__ai/
+https://michael-chung-mc.github.io/wip__html__css__javascript__jest/
 ## Design
-TDD
 ### Requirements
 ### Tools
     * HTML
