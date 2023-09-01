@@ -8,7 +8,7 @@ const App = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="profile">Profile page</Link>
+                        <Link to="profile/">Profile page</Link>
                     </li>
                     <li>
                         <Link to="profile/popeye">Popeye</Link>
